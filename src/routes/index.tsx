@@ -5,20 +5,35 @@ import { Dashboard } from "@/components/wavelength/Dashboard";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Wavelength — JIT Liquidity Defense Dashboard" },
+      {
+        title: "Wavelength Dashboard | JIT Attack Monitor & LP Defense",
+      },
       {
         name: "description",
         content:
-          "Live dashboard for the Wavelength Uniswap v4 hook: JIT detection, penalty fees, LP redistribution, and cross-chain risk flags via Reactive Network.",
+          "Live monitoring dashboard for Wavelength - Uniswap v4 JIT liquidity defense hook. Watch JIT attacks get detected and penalized in real time, view cross-chain risk flags via Reactive Network, track LP fee redistribution, and simulate attacks.",
       },
-      { property: "og:title", content: "Wavelength — JIT Liquidity Defense Dashboard" },
+      { property: "og:type", content: "website" },
+      {
+        property: "og:title",
+        content: "Wavelength Dashboard | JIT Attack Monitor & LP Defense",
+      },
       {
         property: "og:description",
         content:
-          "Watch JIT liquidity attacks get detected, penalized, and propagated across pools in real time.",
+          "Real-time monitoring of JIT liquidity attacks, penalty fee distribution, cross-chain risk propagation, and LP rebate claims on Uniswap v4.",
       },
-      { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://res.cloudinary.com/dv0tt80vn/image/upload/v1787230439/WaveLength_fmzfcn.png" },
       { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:title",
+        content: "Wavelength Dashboard | JIT Attack Monitor",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Real-time monitoring of JIT attacks, penalty fees, and cross-chain risk flags on Uniswap v4.",
+      },
     ],
   }),
   component: Index,

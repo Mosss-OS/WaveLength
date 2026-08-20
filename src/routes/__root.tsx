@@ -77,14 +77,47 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Wavelength - JIT Liquidity Defense" },
-      { name: "description", content: "Uniswap v4 hook for JIT detection, penalty fees, and cross-chain risk signals via Reactive Network" },
+      {
+        title: "Wavelength | Uniswap v4 JIT Liquidity Defense via Reactive Network",
+      },
+      {
+        name: "description",
+        content:
+          "Wavelength is a Uniswap v4 hook that detects and penalizes JIT (just-in-time) liquidity attacks in real time, redistributes penalty fees to loyal LPs, and propagates cross-chain risk signals via Reactive Network so attackers cannot evade detection across pools.",
+      },
       { name: "author", content: "Wavelength" },
-      { property: "og:title", content: "Wavelength - JIT Liquidity Defense" },
-      { property: "og:description", content: "Uniswap v4 hook for JIT detection, penalty fees, and cross-chain risk signals via Reactive Network" },
+      { name: "keywords", content: "Uniswap, v4, hook, JIT, just-in-time liquidity, MEV, sandwich attack, DeFi, LP protection, Reactive Network, cross-chain, dynamic fees, liquidity defense, sustainable liquidity, Base Sepolia" },
+      { name: "theme-color", content: "#0a0a0a" },
+
+      // Open Graph
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Wavelength" },
+      {
+        property: "og:title",
+        content: "Wavelength | Uniswap v4 JIT Liquidity Defense",
+      },
+      {
+        property: "og:description",
+        content:
+          "Detects and penalizes JIT liquidity attacks on Uniswap v4. Redistributes penalty fees to loyal LPs. Cross-chain risk propagation via Reactive Network.",
+      },
+      { property: "og:image", content: "https://res.cloudinary.com/dv0tt80vn/image/upload/v1787230439/WaveLength_fmzfcn.png" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "Wavelength - Uniswap v4 JIT Liquidity Defense" },
+
+      // Twitter / X
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Wavelength" },
+      {
+        name: "twitter:title",
+        content: "Wavelength | Uniswap v4 JIT Liquidity Defense",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Detects and penalizes JIT liquidity attacks on Uniswap v4. Cross-chain risk propagation via Reactive Network.",
+      },
+      { name: "twitter:image", content: "https://res.cloudinary.com/dv0tt80vn/image/upload/v1787230439/WaveLength_fmzfcn.png" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -98,6 +131,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "apple-touch-icon", href: "/favicon.png" },
     ],
   }),
   shellComponent: RootShell,

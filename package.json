@@ -1,5 +1,6 @@
 {
-  "name": "tanstack_start_ts",
+  "name": "wavelength",
+  "description": "Uniswap v4 hook for JIT liquidity defense with cross-chain risk propagation via Reactive Network",
   "private": true,
   "sideEffects": false,
   "type": "module",
