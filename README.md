@@ -89,15 +89,16 @@ wavelength/
 
 ## Current Build (what's in this repo)
 
-### Smart Contracts (Phases 0–2 complete)
+### Smart Contracts (Phases 0–3 complete)
 
 The `WavelengthHook` contract implements:
 - **JIT Detection** — tracks LP additions with block number + tick range, flags suspected JIT during large swaps, confirms on removal
 - **Dynamic Fee Penalty** — 10x fee override via `updateDynamicLPFee` on JIT detection, auto-resets after delay
 - **Time-Weighted Redistribution** — penalty fees distributed to LPs proportional to position duration
 - **Rebate Claims** — `claimRebate()` for LPs to withdraw accrued shares
+- **Cross-Chain Risk Registry** — `JITRiskRegistry` + `ReactiveJITListener` for Reactive Network integration
 
-14/14 Foundry tests passing covering all detection and redistribution scenarios.
+32/32 Foundry tests passing covering detection, redistribution, and cross-chain integration scenarios.
 
 ### Frontend Dashboard
 
@@ -121,12 +122,46 @@ The frontend talks to contracts exclusively through **declared ABI fragments** (
 | **Phase 0** | Foundry environment, v4-core / v4-periphery / OpenZeppelin deps, hook scaffold + address-mining smoke test | ✅ Complete |
 | **Phase 1** | Core JIT detection logic (`beforeAddLiquidity` / `beforeRemoveLiquidity` / `beforeSwap`), `JITDetected` event, false-positive test coverage | ✅ Complete |
 | **Phase 2** | Dynamic fee penalty (10x), time-weighted redistribution, `claimRebate()`, penalty/redistribution tests | ✅ Complete |
-| **Phase 3** | Reactive Network RSC (`ReactiveJITListener`) + `JITRiskRegistry`, cross-pool/chain risk propagation, decay cooldown, integration demo | 🔴 Pending |
+| **Phase 3** | Reactive Network RSC (`ReactiveJITListener`) + `JITRiskRegistry`, cross-pool/chain risk propagation, decay cooldown, integration demo | ✅ Complete |
 | **Phase 4** | Frontend dashboard (this repo) — all five panels | 🟢 Mostly built |
-| **Phase 5** | End-to-end demo script (attack on Pool A → cross-chain penalty on Pool B → LP rebate claim) | 🔴 Pending |
+| **Phase 5** | End-to-end demo script (attack on Pool A → cross-chain penalty on Pool B → LP rebate claim) | ✅ Complete |
 | **Phase 6** | Submission polish: README architecture diagram, demo video, testnet deployments, gas profiling | 🔴 Pending |
 
 The detailed phase-by-phase development prompt lives in `wavelength-development-prompt.md` (local-only, **never committed**). Each remaining phase is tracked as a GitHub issue.
+
+---
+
+## Running the Demo
+
+### Local Demo (Foundry script)
+
+The end-to-end demo script runs the full attack-and-defense flow in ~2 seconds:
+
+```sh
+cd contracts
+forge script script/EndToEndDemo.s.sol:EndToEndDemo -vv
+```
+
+**What the demo shows:**
+
+1. **Step 0:** Deploy infrastructure (pool, hook, registry)
+2. **Step 1:** Normal LP adds liquidity → no flag, base fee applies
+3. **Step 2:** Attacker JIT attack on Pool A → detected, penalty fee (3%) applied
+4. **Step 3:** Simulate Reactive Network callback → attacker flagged in registry
+5. **Step 4:** Attacker tries Pool B → penalized immediately (cross-chain defense)
+6. **Step 5:** Normal LP removes liquidity → rebate claim flow demonstrated
+
+### Testnet Deployment
+
+Contracts are designed for Base Sepolia deployment. See `contracts/script/DeployWavelength.s.sol`.
+
+### Dashboard
+
+```sh
+npm run dev        # start the Vite dev server
+```
+
+Open the dashboard to see real-time events, fee comparisons, and the cross-chain risk registry.
 
 ---
 
