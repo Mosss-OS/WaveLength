@@ -63,6 +63,7 @@ function DashboardBody({
       <header className="border-b border-border/80 bg-background/70 backdrop-blur">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-5 py-4">
           <div className="flex items-baseline gap-3">
+            <img src="/favicon.png" alt="Wavelength" className="h-6 w-6" />
             <h1 className="text-xl font-semibold tracking-tight">Wavelength</h1>
             <p className="mono hidden text-[11px] uppercase tracking-[0.22em] text-muted-foreground sm:block">
               uniswap v4 · jit defense · reactive network
